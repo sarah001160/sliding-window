@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Sliding Window</title>
+</head>
+<style>
+	*,*::before,*::after{
+		margin:0;
+		padding:0;
+		border:0;
+	}
+</style>
+<body>
+	<p>
+Ex:
+maxSum([2,7,3,0,6,1,-5,-12,-11],3) //12<br>
+minSum([2,7,3,0,6,1],3) //-28 <br>
+
+
+去計算array裡面每三個連續數字  <br>加起來的總合,最大是多少?最小是多少? <br>
+
+1. 2+7+3 <br>
+2. 7+3+0<br>
+3. 3+0+6<br>
+4. 0+6+1<br>
+5. 6+1+-5<br>
+6. 1-5-12<br>
+7.-5-12-11<br>
+問項次1.~7.組合當中,哪個組合最大值? 哪個組合最小值?<br>
+
+
+
+＃分析這個問題要怎麼處理?<br>
+第一個sliding window是項次1. >>>值從2開始(index第0個)<br>
+最後一個sliding window是項次7.>>>值從-5開始(倒數第三個index位置)<br>
+也就是最後一個位置array.length-1往前數第(3-1)個<br>
+-5的位置是(size3-1)格<br>
+也就是第array.length-1-(size-1) <br>
+=array.length-1-size+1<br>
+=array.legnth-size<br>
+
+以這個例題來說size是3,那-5的位置就在array.length-(3-1)<br>
+也就是9-1-(3-1)=6 index第6個<br>
+*JS從0開始數唷,數到index第6個位置,獲得值-5<br>
+//驗證正確<br>
+
+
+＃開始寫codes
+	</p>
+	
+
+</body>
+<script>
+
+let array=[2,7,3,0,6,1,-5,-12,-11];
+
+maxSum(array,3);
+
+function maxSum(arr,size){
+	let max_value= -Infinity;
+
+	if(size>arr.legnth){
+		return null;
+	}
+
+	for (let i=0; i<=arr.length-size; i++){
+		let window=[];
+ 		for(let j=i; j<i+size; j++){
+			console.log(i, j);
+			window.push(arr[j])
+			
+		}
+		console.log(window)
+	}
+	
+
+}
+
+
+
+
+	</script>
+</html>
